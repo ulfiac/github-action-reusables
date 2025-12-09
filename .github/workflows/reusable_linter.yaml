@@ -1,5 +1,5 @@
 name: reusable-linter
-run-name: "reuseable linter: ${{ github.event_name == 'pull_request' && github.event.pull_request.title || github.ref_name }}"
+run-name: "reusable linter: ${{ github.event_name == 'pull_request' && github.event.pull_request.title || github.ref_name }}"
 
 on:
   workflow_call:
