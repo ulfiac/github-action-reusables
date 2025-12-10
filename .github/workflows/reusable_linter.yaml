@@ -12,10 +12,18 @@ on:
         default: true
         required: false
         type: boolean
+      shellcheck-scandir:
+        default: './scripts'
+        required: false
+        type: string
       terraform-fmt:
         default: true
         required: false
         type: boolean
+      terraform-fmt-path:
+        default: '.'
+        required: false
+        type: string
       tflint:
         default: true
         required: false
@@ -24,6 +32,10 @@ on:
         default: true
         required: false
         type: boolean
+      trivy-config-path:
+        default: '.'
+        required: false
+        type: string
   workflow_dispatch:
     inputs:
       actionlint:
@@ -34,10 +46,18 @@ on:
         default: true
         required: false
         type: boolean
+      shellcheck-scandir:
+        default: './scripts'
+        required: false
+        type: string
       terraform-fmt:
         default: true
         required: false
         type: boolean
+      terraform-fmt-path:
+        default: '.'
+        required: false
+        type: string
       tflint:
         default: true
         required: false
@@ -46,6 +66,10 @@ on:
         default: true
         required: false
         type: boolean
+      trivy-config-path:
+        default: '.'
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -69,7 +93,7 @@ jobs:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       - uses: ludeeus/action-shellcheck@00cae500b08a931fb5698e11e79bfbd38e612a38 # v2.0.0
         with:
-          scandir: ./scripts
+          scandir: ${{ inputs.shellcheck-scandir }}
 
   # terraform syntax linter
   terraform-fmt:
@@ -81,7 +105,7 @@ jobs:
         with:
           terraform_wrapper: false
       - run: terraform --version
-      - run: terraform fmt -check -diff -recursive .
+      - run: terraform fmt -check -diff -recursive ${{ inputs.terraform-fmt-path }}
 
   # terraform linter
   tflint:
@@ -101,4 +125,4 @@ jobs:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       - uses: aquasecurity/setup-trivy@e6c2c5e321ed9123bda567646e2f96565e34abe1 # v0.2.4
       - run: trivy --version
-      - run: trivy config --exit-code 1 .
+      - run: trivy config --exit-code 1 ${{ inputs.trivy-config-path }}
