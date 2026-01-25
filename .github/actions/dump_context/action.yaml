@@ -44,9 +44,9 @@ runs:
         echo "${{ toJson(matrix) }}"
         echo "::endgroup::"
 
-        echo "::group::needs context:"
-        echo "${{ toJson(needs) }}"
-        echo "::endgroup::"
+        # echo "::group::needs context:"
+        # echo "${{ toJson(needs) }}"
+        # echo "::endgroup::"
 
         echo "::group::runner context:"
         echo "${{ toJson(runner) }}"
