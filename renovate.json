@@ -1,8 +1,5 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "assignees": [
-    "ulfiac"
-  ],
   "extends": [
     "config:recommended",
     "mergeConfidence:all-badges"
@@ -24,6 +21,9 @@
         "terraform-docs/gh-actions"
       ],
       "minimumReleaseAge": "7 days",
+      "reviewers": [
+        "ulfiac"
+      ],
       "schedule": [
         "before 9am on monday"
       ]
@@ -31,7 +31,7 @@
     {
       "automerge": true,
       "groupName": "container packages",
-      "matchPackagePatterns": [
+      "matchPackageNames": [
         "ghcr.io/ulfiac/terraform-fmt",
         "ghcr.io/ulfiac/terragrunt-hcl-fmt",
         "ghcr.io/ulfiac/tflint"
