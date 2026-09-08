@@ -62,6 +62,7 @@ jobs:
           branch: terraform-docs-updates/${{ github.ref_name }}
           commit-message: "terraform-docs: automated action"
           delete-branch: true
+          labels: "terraform-docs"
           title: "terraform-docs: automated action"
           token: ${{ steps.app-token.outputs.token }}
 
